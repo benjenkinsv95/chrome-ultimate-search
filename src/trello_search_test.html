@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trello Search Test</title>
+
+</head>
+<body>
+
+<h1>Test</h1>
+<h2>Search Terms</h2>
+<ul id="results"></ul>
+
+<a id="authorize"><button>Login</button></a>
+
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="search_result.js"></script>
+<script src="trello_searcher.js"></script>
+<script src="search_factory.js"></script>
+
+<!--If forking this project, you will need to supply your own configuration.-->
+<script src="default_search_configuration.js"></script>
+
+
+<script type="text/javascript">
+    let searchFactory = new SearchFactory(DEFAULT_SEARCH_CONFIGURATION);
+    let searcher = searchFactory.createTrelloSearcher();
+    searcher.searchAndAppendResultsToList("book", "results");
+    document.getElementById("authorize").setAttribute("href", searcher.getLoginUrl());
+
+</script>
+</body>
+</html>
